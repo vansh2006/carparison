@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <!-- Banner -->
+    <section id="banner">
+            <header>
+                <h1>Welcome to Carparison</h1>
+                <h6>A web app designed to help you make comparisons when making the right choice in purchasing a car.</h6>
+            </header>
+    </section>
+
+    <form action="/index" method="post">
+        <div class="inputrow">
+            <label for="make">This is the Make of your car (Toyota Camry)</label>
+            <input id="make" class="form-control" name="make" placeholder="Make (Ford Escape)" type="text" autocomplete="off">
+        </div>
+        <div class="inputrow">
+            <label for="mileage">If your car uses 8 litres of gas per 100 KM, input "8"</label>
+            <input id="mileage" class="form-control" name="mileage" placeholder="Fuel Economy (litres)" type="number" autocomplete="off" step="0.1">
+        </div>
+        <div class="inputrow">
+            <label for="price">This is the total price of the vehicle</label>
+            <input id="price" class="form-control" name="price" placeholder="Car Price ($)" type="number" autocomplete="off">
+        </div>
+        <div class="inputrow">
+            <label for="tax">If your region has 13% tax, input "0.13"</label>
+            <input id="tax" class="form-control" name="tax" placeholder="Regional Tax (%)" type="number" autocomplete="off" step="0.01">
+        </div>
+        <div class="inputrow last-input">
+            <label for="gas">This is how much one litre of gas costs in your region</label>
+            <input id="gas" class="form-control" name="gas" placeholder="Regional Gas ($)" type="number" autocomplete="off" step="0.01">
+        </div>
+        <button class="btn btn-primary" type="submit">Show Projections</button>
+    </form>
+
+{% endblock %}

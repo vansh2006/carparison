@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Help
+{% endblock %}
+
+{% block main %}
+
+    <!-- Banner -->
+    <section id="banner">
+            <header class="left">
+                <h3 class="left">Submit Feedback</h3>
+                <h6>Submitting this form and giving us feedback helps us make changes to make your experience better.</h6>
+            </header>
+    </section>
+    <div class="forminputrow">
+        <form method="POST">
+            <div class="feedback-input-row left">
+                <div class="bottom">
+                    <input id="email" class="form-control left" name="email" placeholder="Email" type="email" autocomplete="off">
+                </div>
+                <div class="bottom">
+                    <input id="feedback" class="form-control left" name="feedback" placeholder="Feedback" type="text" autocomplete="off">
+                </div>
+                <div class="bottom">
+                    <select class="form-control left" id="rating" name="rating" type="number">
+                        <option selected value="initial">Rating</option>
+                        <option value="one">1 Star</option>
+                        <option value="two">2 Star</option>
+                        <option value="three">3 Star</option>
+                        <option value="four">4 Star</option>
+                        <option value="five">5 Star</option>
+                    </select>    
+                </div>
+                <button class="btn btn-primary btn left" type="submit">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+    <p class="left">We do not share this information with anybody. It is kept safe within our databases!</p>
+
+
+{% endblock %}

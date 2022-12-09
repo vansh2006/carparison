@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+
+{% block main %}
+<h4>Here are the results for your {{ info[0].make }}</h2>
+
+    <body>
+        <script>
+            // Javascript to show how much gas will cost
+            document.addEventListener('DOMContentLoaded', function() {
+
+                document.querySelector('#kilometers').addEventListener('change', function() {
+                    let kilometers = document.querySelector('#kilometers').value;
+                    let cost = ((`{{ (info[0].mileage * info[0].gas) * (1 + info[0].tax) }}`) * kilometers) / 100;
+                    let round_cost = cost.toFixed(2);
+
+                    let str1 = 'Gas (including tax) will cost $';
+                    let str2 = ' for this many kilometers:';
+                    let info = str1 + round_cost + str2;
+
+                    document.querySelector('#gas_cost').innerHTML = info; 
+                });
+            });
+
+
+        </script>
+
+        {% for item in info %}
+        <h6>Approximate Car Depreciation over 5 years</h6>
+        <div class="forminputrow">
+            <table>
+                <tr>
+                    <td>Year 1</td>
+                    <td>{{ item.v1| usd}}</td>
+                </tr>
+                <tr>
+                    <td>Year 2</td>
+                    <td>{{ item.v2 | usd}}</td>
+                </tr>
+                <tr>
+                    <td>Year 3</td>
+                    <td>{{ item.v3 | usd}}</td>
+                </tr>
+                <tr>
+                    <td>Year 4</td>
+                    <td>{{ item.v4 | usd}}</td>
+                </tr>
+                <tr>
+                    <td>Year 5</td>
+                    <td>{{ item.v5 | usd}}</td>
+                </tr>
+            </table>
+
+            <img src="/static/depreciation.png" class="chart" alt="Line Chart visualizing depreciation of value">
+        </div>
+
+        <h6>Approximate cost for maintainence over 5 years</h6>
+        <div class="forminputrow">
+            <table>
+                <tr>
+                    <td>Year 1</td>
+                    <td>{{ item.maintainence | usd }}</td>
+                </tr>
+                <tr>
+                    <td>Year 2</td>
+                    <td>{{ (item.maintainence + (12000 * 0.007)) | usd }}</td>
+                </tr>
+                <tr>
+                    <td>Year 3</td>
+                    <td>{{ (item.maintainence + (12000 * 0.008)) | usd }}</td>
+                </tr>
+                <tr>
+                    <td>Year 4</td>
+                    <td>{{ (item.maintainence + (12000 * 0.0085)) | usd }}</td>
+                </tr>
+                <tr>
+                    <td>Year 5</td>
+                    <td>{{ (item.maintainence + (12000 * 0.009)) | usd }}</td>
+                </tr>
+            </table>
+
+            <img src="/static/maintainence.png" class="chart" alt="Line Chart visualizing depreciation of value">
+        </div>
+
+            <!-- <img class="image" src="depreciation.jpg" alt="Line Chart visualizing depreciation of value"> -->
+            
+        </div>
+        {% endfor %}
+        <h6>Exact cost of fuel for driving X many kilometers with current gas price: {{ info[0].gas | usd }}</h6>
+        <div class="gas_calc">
+            <p id="gas_cost">Gas (including tax) will cost {{ ((info[0].mileage * info[0].gas) * (1 + info[0].tax)) | usd}} for this many kilometers:</p>
+            <input id="kilometers" class="form-control form-control-sm" type="number" value="100" step="100" min="0"></input>
+        </div>
+
+
+    </body>
+{% endblock %}

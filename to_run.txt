@@ -1,0 +1,10 @@
+To run App, run "flask run --host=0.0.0.0"
+http://192.168.2.47:5000
+
+
+Flask library must be installed
+As well as the latest version of python
+
+Any other needed libaries will be listed at the top of app.py
+
+https://github.com/vansh2006
